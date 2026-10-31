@@ -14,11 +14,37 @@ SCAR consists of three phases:
 
 SCAR operates on the client side without modifying or fine-tuning the trained personalized models.
 
+## Repository Structure
+
+The repository is organized as follows:
+
+```text
+SCAR/
+├── README.md
+├── code/
+│   ├── main.py
+│   ├── client.py
+│   ├── server.py
+│   ├── run_experiments.py
+│   ├── batch_evaluate_fed_and_detection_Cos_Similarity.py
+│   ├── SCAR_overhead.py
+│   ├── requirements.txt
+│   └── ...
+└── appendix/
+    └── SCAR_Appendix.pdf (coming soon)
+```
+
+- **`code/`** contains the source code for FL/PFL training, backdoor attacks, SCAR evaluation, and additional analyses.
+- **`appendix/`** will contain supplementary experimental results and supporting analysis.
+
 ## Requirements
 
-Install the required Python dependencies:
+The implementation requires Python and the dependencies listed in `code/requirements.txt`.
+
+From the repository root, navigate to the source code directory and install the required dependencies:
 
 ```bash
+cd code
 pip install -r requirements.txt
 ```
 
@@ -40,21 +66,21 @@ Datasets and pretrained model checkpoints are not included in this repository.
 
 ## Training
 
-The main training entry point is `main.py`.
+The main training entry point is `code/main.py`.
 
-For example, the default CIFAR-10 experiment can be configured using:
+After navigating to the `code/` directory, the default CIFAR-10 experiment can be configured using:
 
 ```bash
 python main.py --dataset cifar10 --model resnet10 --pfl fedbn --client_num 100 --bad_client_num 10 --ba_poison_rate 0.2 --total_round 1000
 ```
 
-Additional experiment configurations can be specified through the command-line arguments or the `run_experiments.py` script.
+Additional experiment configurations can be specified through the command-line arguments or the `code/run_experiments.py` script.
 
 ## SCAR Evaluation
 
 The main evaluation script is:
 
-`batch_evaluate_fed_and_detection_Cos_Similarity.py`
+`code/batch_evaluate_fed_and_detection_Cos_Similarity.py`
 
 The evaluation measures:
 
@@ -66,21 +92,21 @@ The evaluation measures:
 
 For each client, benign test queries and their corresponding triggered versions are evaluated using the client's personalized model. Results are summarized across clients.
 
-The `SCAR_overhead.py` script is provided for measuring inference latency and memory overhead.
+The `code/SCAR_overhead.py` script is provided for measuring inference latency and memory overhead.
 
 ## Additional Analysis
 
-The repository also includes scripts for frequency-domain trigger analysis and dataset preparation.
+The `code/` directory also includes scripts for frequency-domain trigger analysis and dataset preparation.
 
 ## Reproducibility Notes
 
 Experiment results may vary due to randomized client data partitioning and training. The original training implementation does not fully seed NumPy-based data partitioning, so exact reproduction of previously reported numerical results is not guaranteed.
 
-Please verify the experiment parameters and local dataset and checkpoint paths before running the scripts.
+Please verify the experiment parameters and local dataset and checkpoint paths before running the scripts. Relative paths may need adjustment depending on the working directory.
 
 ## Appendix
 
-An extended appendix containing additional experimental results and supporting analysis will be made available in this repository.
+An extended appendix containing additional experimental results and supporting analysis will be made available in the `appendix/` directory.
 
 ## Citation
 
