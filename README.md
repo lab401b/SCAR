@@ -9,10 +9,16 @@ This repository provides the implementation of **SCAR (Spectrum-based Consistenc
 SCAR consists of three phases:
 
 1. **Spectrum-based Filtering (SF):** Uses JPEG compression to attenuate high-frequency trigger perturbations.
-2. **Consistency-based Auditing (CBA):** Detects potentially triggered inputs by measuring the cosine similarity between model logits before and after filtering.
+2. **Consistency-based Auditing (CBA):** Detects potentially triggered queries by measuring the cosine similarity between model logits before and after filtering.
 3. **Adaptive Recovery (AR):** Recovers predictions through multi-quality fusion and prediction masking.
 
-SCAR operates on the client side without modifying or fine-tuning the trained personalized models.
+SCAR operates entirely on the client side without modifying or fine-tuning the deployed personalized models and does not require benign reference data.
+
+## Supplementary Material
+
+Additional robustness evaluations of SCAR and CBA across different datasets, model architectures, and attack configurations are provided in the supplementary material.
+
+[**View the Supplementary Material (PDF)**](./SCAR_Supplementary_Material.pdf)
 
 ## Repository Structure
 
@@ -21,22 +27,20 @@ The repository is organized as follows:
 ```text
 SCAR/
 ├── README.md
-├── code/
-│   ├── main.py
-│   ├── client.py
-│   ├── server.py
-│   ├── run_experiments.py
-│   ├── batch_evaluate_fed_and_detection_Cos_Similarity.py
-│   ├── SCAR_overhead.py
-│   ├── requirements.txt
-│   └── ...
-└── appendix/
-    └── SCAR_Appendix.pdf (coming soon)
+├── SCAR_Supplementary_Material.pdf
+└── code/
+    ├── main.py
+    ├── client.py
+    ├── server.py
+    ├── run_experiments.py
+    ├── batch_evaluate_fed_and_detection_Cos_Similarity.py
+    ├── SCAR_overhead.py
+    ├── requirements.txt
+    └── ...
 ```
 
-- **`code/`** contains the source code for FL/PFL training, backdoor attacks, SCAR evaluation, and additional analyses.
-- **`appendix/`** will contain supplementary experimental results and supporting analysis.
-
+- **`code/`** contains the source code for FL/PFL training, Bad-PFL attacks, SCAR evaluation, and additional analyses.
+- **`SCAR_Supplementary_Material.pdf`** provides additional robustness evaluations across datasets, model architectures, and attack configurations.
 ## Requirements
 
 The implementation requires Python and the dependencies listed in `code/requirements.txt`.
